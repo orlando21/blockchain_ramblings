@@ -1,28 +1,26 @@
 ---
-title: Blockchain Blog
+title: Blog
 ---
 
-[<img src="https://github.com/goodroot/hugo-classic/raw/master/images/partywizard.gif" style="max-width:15%;min-width:40px;float:right;" alt="Github repo" />](https://github.com/goodroot/hugo-classic)
 
-# Hugo.io - Classic
+# Blockchain Ramblings
 
-### For text focused goodness
+It's been a couple of years since I first heard about bitcoin and blockchain, so you could say I'm somewhat late to the party by trying to learn it now. Of course, if blockchain turns out to be everything its adherents say it will be, then I'm early.
 
-About twenty years ago Jobs and Wozniak, the founders of Apple, came up with the very strange idea of selling information processing machines for use in the home. The business took off, and its founders made a lot of money and received the credit they deserved for being daring visionaries. But around the same time, Bill Gates and Paul Allen came up with an idea even stranger and more fantastical: **selling computer operating systems**. This was much weirder than the idea of Jobs and Wozniak.
+This blog is a journal of my experiences learning about blockchain, cryptocurrencies, and other digital shiny things. I'm going to try to note sources that I read (at least the ones I consider useful), and I look forward to doing a small project or two.
 
-~~~ruby
-def with_value_from_database(value)
-  self.class.from_database(name, value, type)
-end
+Based on what I've read so far, it would make sense for me to look deeply at Ethereum and its associated technologies like Solidity and web3.js. But that's at a later stage. Right now I want to build up to that by looking first at decentralized file storage technologies, and learn how these can integrate with blockchain.
 
-def with_cast_value(value)
-  self.class.with_cast_value(name, value, type)
-end
-end
-~~~
+As a practical first project, I'd like to put this blog on one such file network, the Interplanetary File System (IPFS).
 
-A computer at least had some sort of physical reality to it. It came in a box, you could open it up and plug it in and watch lights blink. An operating system had no tangible incarnation at all. It arrived on a disk, of course, but the disk was, in effect, nothing more than the box that the OS came in.
+### Is the future now?
+
+I remember when the internet and web went mainstream. At one of my first jobs, I met a researcher who had worked at CERN with Tim Berners-Lee. The researcher spoke about the initial strangeness of the web and how barebones and ugly it had been before the advent of CSS. Blockchain kind of reminds me of that now. It has this _toy_ feeling to it.
+
+There's nothing wrong with that. But I also remember that in the nineties, before it was adopted en masse, the internet had already been developed during decades of research and fine-tuned by the use of protocols for email and ftp.
+
+Blockchain just hasn't existed that long. Or maybe I'm comparing apples with oranges, since blockchain is just one more application sitting atop the internet. At any rate, it's worthwhile to make an effort to understand it better and even try to build a few apps.
+
+### Posts
 
 <hr/>
-
-### Blog

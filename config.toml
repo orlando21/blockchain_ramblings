@@ -23,11 +23,8 @@ footnotereturnlinkcontents = "↩"
     name = "Tags"
     url = "/tags/"
     weight = 3
-[[menu.feed]]
-    name = "Subscribe"
-    url = "/index.xml"
 
 [params]
     description = "A simple, minimal blog for those who love text."
-    footer = "Open-Source | [Github](https://github.com/goodroot/hugo-classic) | [Twitter](https://twitter.com/thegoodroot)"
+    footer = "Powered by [Hugo](https://gohugo.io/) | [Classic Theme](https://themes.gohugo.io/hugo-classic/) | Blog by [Greg Babb](https://twitter.com/grbabb)"
     custom_css = ["css/theme-override.css"]

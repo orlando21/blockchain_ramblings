@@ -5,6 +5,10 @@ body {
   line-height: 1.5em;
 }
 
+.small {
+  font-size: 85%;
+}
+
 /* Table of Contents, if wanted
 
 Add to yaml:
@@ -24,14 +28,14 @@ output:
 .menu li { display: inline-block; }
 .article-meta, .menu a {
   text-decoration: none;
-  background: #D2D6EF;
-  color: #FFF;
+  color: #2c1e1f;
   padding: 5px;
   border-radius: 5px;
 }
 
 .terms { font-size: .9em; }
 .menu, .article-meta, footer { text-align: center; }
+.article-meta { text-align: left; }
 .title { font-size: 1.1em; }
 footer a { text-decoration: none; }
 
@@ -43,7 +47,7 @@ footer a { text-decoration: none; }
 }
 
 a {
-  color: #613DC1;
+  color: #cb0001;
   text-decoration: none;
 }
 
@@ -58,7 +62,7 @@ header {
     height: 1.75rem;
     font-family: "Lucida Console" , "Liberation Mono";
     font-size: .875rem;
-    background: #613DC1;
+    background: #cb0001;
     border-bottom: 1px solid #000;
 }
 
