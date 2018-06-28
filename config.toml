@@ -1,4 +1,5 @@
 baseurl = "/"
+relativeURLs = true
 languageCode = "en-us"
 title = "Classic"
 theme = "hugo-classic"
