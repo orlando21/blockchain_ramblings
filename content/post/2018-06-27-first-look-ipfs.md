@@ -37,19 +37,24 @@ IPFS is also a distributed hash table (DHT) that stores the locations of each bl
 
 An example of another application using Merkle DAG is git source control, which allows users to duplicate and edit multiple versions of a file, store those versions and later merge edits with the original file.
 
-So how does IPFS implement versioning? In my short experience with IPFS, it seems that users won't explicitly specify version numbers per se, but instead simply update the content to generate a different hash number pointing to that content. There's a good explanation of content and hash updating in a tutorial named ["Decentralized Web Primer."](https://flyingzumwalt.gitbooks.io/decentralized-web-primer/content/files-on-ipfs/lessons/add-and-retrieve-file-content.html)
+So how does IPFS implement versioning? When you update content, IPFS will generate a different hash pointing to that content. There's a good explanation of content and hash generation in a tutorial named ["Decentralized Web Primer."](https://flyingzumwalt.gitbooks.io/decentralized-web-primer/content/files-on-ipfs/lessons/add-and-retrieve-file-content.html).
 
-(You might be thinking at this point, "how will people find my content if I update it?" as the hash pointing to your content will change. Something called "IPNS" solves this, which we'll cover later.)
+You can think of a hash as a kind of snapshot of that content at a certain date and time. Say, you generate a hash for your blog article when first adding it to IPFS. Then a month later you update a broken link and a new hash is generated. However, the old hash is still valid, and points to the older version of your content at the time the hash was generated.
 
-What IPFS is not: it's not a distributed ledger like bitcoin that permanently stores your content in the cloud; there's no blockchain involved. There are ways to store your content more or less permanently, which involve either "pinning" your content in your own permanently online host (pinning avoids it getting garbage collected), or having other people pin your content (i.e., if your content becomes popular).
+(You might be thinking at this point, "how will people find my content if I update it?" as the hash pointing to your content will change. An address scheme called "IPNS" solves this, which we'll cover later.)
+
+What IPFS is not: it's not a distributed ledger like bitcoin that permanently stores your content in the cloud. There's no blockchain involved. There are ways to store your content more or less permanently, which involve either "pinning" your content in your own permanently online host (pinning avoids it getting garbage collected), or having other people pin your content (i.e., if your content becomes popular).
 
 ### Why I've chosen to play with IPFS
 
-For sure there are other protocols for decentralized file hosting out there, like [Storj](https://storj.io/), [SIA](https://sia.tech/), and [MaidSafe](https://maidsafe.net/), among others. IPFS seems to be quite prevalent and it's open source. It's also supports [Filecoin](https://filecoin.io/), a cryptocurrency for allocating storage efficiently.
+For sure there are other protocols for decentralized file hosting out there, like [Storj](https://storj.io/), [SIA](https://sia.tech/), and [MaidSafe](https://maidsafe.net/), among others. IPFS seems to be quite prevalent and it's open source. It also supports [Filecoin](https://filecoin.io/), a cryptocurrency for allocating storage efficiently.
 
 Another interesting idea is [BockchainDB](https://www.bigchaindb.com/), a MongoDB-based decentralized storage database that uses a NoSQL query language. Wow. I definitely will bookmark this for later.
 
-For now I'm focusing on IPFS and will start my small project to put this blog on it.
+For now I'm focusing on IPFS and will start a small project to put this blog on it.
+
+**Next**: [Getting this blog on IPFS](http://localhost:1313/post/2018/06/28/putting-blog-on-ipfs/)
+
 
 ### Resources
 
