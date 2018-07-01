@@ -53,6 +53,8 @@ Another interesting idea is [BockchainDB](https://www.bigchaindb.com/), a MongoD
 
 For now I'm focusing on IPFS and will start a small project to put this blog on it.
 
+**Next**: [Getting this blog on IPFS](http://localhost:1313/post/2018/06/28/putting-blog-on-ipfs/)
+
 
 ### Resources
 

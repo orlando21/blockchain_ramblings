@@ -202,6 +202,9 @@ Published to QmeeDDVNoHZkuweMbcBaiFqxwQNUr7RemgLHp6Zz8qx43S: /ipfs/Qmcn3JBpV6Ush
 
 There we go. The folder is now associated with the RSA key I just created. This seems somehow cleaner than referencing my blog with my peer ID of my local node.
 
+### Issues with IPNS
 
+It's not all roses though. When I afterwards ran `ipfs ls` on the public key I just created, it seemed to hang forever (running this on the original hash for my_blog produces the expected results howver).
 
+Also, IPNS records [apparently expire](https://discuss.ipfs.io/t/ipfs-name-failing-to-resolve/1524/5) after every 24 hours, and if I don't run IPFS daemon they'll disappear entirely. This means that if I want to keep using IPNS, I will have to re-run the daemon, as well as re-run the `ipfs name publish` command on the public key.
 
