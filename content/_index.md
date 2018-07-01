@@ -5,8 +5,6 @@ title: Blog
 
 # Blockchain Ramblings
 
-It's been a couple of years since I first heard about bitcoin and blockchain, so you could say I'm somewhat late to the party by trying to learn it now. Of course, if blockchain turns out to be everything its adherents say it will be, then I'm early.
-
 This blog is a journal of my experiences learning about blockchain, cryptocurrencies, and other digital shiny things. I'm going to note sources that I read (at least the ones I consider useful), and I look forward to doing a small project or two.
 
 Based on what I've read so far, it would make sense for me to look deeply at Ethereum and its associated technologies like Solidity and web3.js. But that's at a later stage. Right now I want to build up to that by looking first at decentralized file storage technologies, and learn how these can integrate with blockchain.
