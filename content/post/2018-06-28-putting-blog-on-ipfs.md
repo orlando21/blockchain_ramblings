@@ -208,3 +208,7 @@ It's not all roses though. When I afterwards ran `ipfs ls` on the public key I j
 
 Also, IPNS records [apparently expire](https://discuss.ipfs.io/t/ipfs-name-failing-to-resolve/1524/5) after every 24 hours, and if I don't keep the IPFS daemon locally they'll disappear entirely. This means that if I want to keep using IPNS, I will have to re-run the daemon, as well as re-run the `ipfs name publish` command on the public key.
 
+Therefore if you can't find the files of this blog at:
+https://gateway.ipfs.io/ipns/QmeeDDVNoHZkuweMbcBaiFqxwQNUr7RemgLHp6Zz8qx43S (just-generated public key)...
+
+...it's a safer bet you can always find them using my peer ID: https://gateway.ipfs.io/ipns/QmZUfPKG3B5D3QWRq4ytDHiUhJyFQE48avxpz6zGuZQe5f
