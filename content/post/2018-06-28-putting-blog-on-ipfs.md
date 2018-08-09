@@ -9,9 +9,9 @@ slug: putting-blog-on-ipfs
 
 Enough of preliminaries, let's get this party started! We're going to use [IPFS](https://github.com/ipfs/ipfs) for what it was made: to store some content.
 
-The first thing I did was to head over to the [IPFS home page](https://ipfs.io/) and install it on my macbook. There, IPFS concepts are clearly explained and I'd recommend watching the [demo video](https://youtu.be/8CMxDNuuAiQ) to get started.
+The first thing I did was to head over to the [IPFS home page](https://ipfs.io/) and install it on my Macbook. There, IPFS concepts are clearly explained and I'd recommend watching the [demo video](https://youtu.be/8CMxDNuuAiQ) to get started.
 
-The first version of IPFS was written in the Go language, so I'm going with that and installing Go on my mac as a prerequisite. I'm not going to cover the install steps for IPFS here as it's [adequately done elsewhere](https://ipfs.io/docs/install/). One resource I found useful after installation was the IPFS tutorials [listed here](https://ipfs.io/docs/examples/), which show you the mechanics of IPFS and different use cases.
+The first version of IPFS was written in the Go language, so I'm going with that and installing Go on my Mac as a prerequisite. I'm not going to cover the install steps for IPFS here as it's [adequately done elsewhere](https://ipfs.io/docs/install/). One resource I found useful after installation was the IPFS tutorials [listed here](https://ipfs.io/docs/examples/), which show you the mechanics of IPFS and different use cases.
 
 Also, Coral Health has written a good primer on how to use IPFS to [exchange encrypted files with someone](https://medium.com/@mycoralhealth/learn-to-securely-share-files-on-the-blockchain-with-ipfs-219ee47df54c). The tutorial combines both IPFS and [GNU Privacy Guard](https://www.gnupg.org/) for encrypting and decrypting files.
 
@@ -174,14 +174,14 @@ $ ipfs name publish Qmcn3JBpV6UshFgnUdWQgzzbhWdXqzRY8qoWmBMEpnGqGL
 Published to QmZUfPKG3B5D3QWRq4ytDHiUhJyFQE48avxpz6zGuZQe5f: /ipfs/Qmcn3JBpV6UshFgnUdWQgzzbhWdXqzRY8qoWmBMEpnGqGL
 ~~~
 
-Here, I've supplied the hash of the `my_blog` folder, and can now give this hash to anyone who wants to access the blog.
+Here, I've supplied the hash of the `my_blog` folder, which is published to my IPFS peer ID (`QmZUfPKG3B5D3QWRq4ytDHiUhJyFQE48avxpz6zGuZQe5f` -- which was generated when I first ran `ipfs init` back in the IPFS installation steps). Running `ipfs init` creates both a hash of my public key (this hash becomes my peer ID), as well as a private key (stored in `$HOME/.ipfs`).
 
-In the line `Published to` above, the first hash is actually my peer ID, which was generated when I ran `ipfs init` back in the IPFS installation steps. Initializing an IPFS repo in such a way creates both a hash of my public key (this hash becomes my peer ID), as well as a private key (stored in `$HOME/.ipfs`).
-
-For now on, I can also access my blog using the gateway:
+For now on, I can also access the files of my blog using the gateway:
 https://gateway.ipfs.io/ipns/QmZUfPKG3B5D3QWRq4ytDHiUhJyFQE48avxpz6zGuZQe5f
 
-Notice the hash provided is my peer ID. It should be mentioned that here, I'm publishing my site under my peer or node ID. This is fine for now if I have only one site, but what if I have several? Then I would generate a separate key for each site and publish under each key, as described in this [Reddit thread](https://www.reddit.com/r/ipfs/comments/74mur0/howto_putting_my_blog_on_ipfs/).
+One thing to note here is that displaying the above link just gives back a listing of the files of my blog. You won't get the look & feel of the generated static site provided by Hugo.
+
+This is fine for now if I have only one site, but what if I want to publish several sites to one node? Then I would generate a separate key for each site and publish under each key, as described in this [Reddit thread](https://www.reddit.com/r/ipfs/comments/74mur0/howto_putting_my_blog_on_ipfs/).
 
 Actually let's try that:
 
@@ -206,5 +206,5 @@ There we go. The folder is now associated with the RSA key I just created. This 
 
 It's not all roses though. When I afterwards ran `ipfs ls` on the public key I just created, it seemed to hang forever (running this on the original hash for my_blog produces the expected results howver).
 
-Also, IPNS records [apparently expire](https://discuss.ipfs.io/t/ipfs-name-failing-to-resolve/1524/5) after every 24 hours, and if I don't run IPFS daemon they'll disappear entirely. This means that if I want to keep using IPNS, I will have to re-run the daemon, as well as re-run the `ipfs name publish` command on the public key.
+Also, IPNS records [apparently expire](https://discuss.ipfs.io/t/ipfs-name-failing-to-resolve/1524/5) after every 24 hours, and if I don't keep the IPFS daemon locally they'll disappear entirely. This means that if I want to keep using IPNS, I will have to re-run the daemon, as well as re-run the `ipfs name publish` command on the public key.
 

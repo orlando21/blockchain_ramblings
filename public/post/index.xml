@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Posts on Classic</title>
+    <link>/post/</link>
+    <description>Recent content in Posts on Classic</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <lastBuildDate>Thu, 28 Jun 2018 00:00:00 +0000</lastBuildDate>
+    
+	<atom:link href="/post/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>Getting this blog on IPFS</title>
+      <link>/post/2018/06/28/putting-blog-on-ipfs/</link>
+      <pubDate>Thu, 28 Jun 2018 00:00:00 +0000</pubDate>
+      
+      <guid>/post/2018/06/28/putting-blog-on-ipfs/</guid>
+      <description>Enough of preliminaries, let&amp;rsquo;s get this party started! We&amp;rsquo;re going to use IPFS for what it was made: to store some content.
+The first thing I did was to head over to the IPFS home page and install it on my macbook. There, IPFS concepts are clearly explained and I&amp;rsquo;d recommend watching the demo video to get started.
+The first version of IPFS was written in the Go language, so I&amp;rsquo;m going with that and installing Go on my mac as a prerequisite.</description>
+    </item>
+    
+    <item>
+      <title>A first look at IPFS</title>
+      <link>/post/2018/06/27/first-look-at-ipfs/</link>
+      <pubDate>Wed, 27 Jun 2018 00:00:00 +0000</pubDate>
+      
+      <guid>/post/2018/06/27/first-look-at-ipfs/</guid>
+      <description>Much has been made of bitcoin&amp;rsquo;s blockchain being inherently unscalable, with transactions needing around 12 minutes to settle, and in some cases much longer. Although you can apparently use this blockchain for file storage, waiting so long to access your files can be a bummer.
+This might also be because the network was not intended for file storage in the first place (e.g., max block size being 1MB).
+Decentralized file storage The idea is to create a file storage system that is similarly decentralized as the blockchain is, where content is also encrypted and where it&amp;rsquo;s basically broken up into little pieces (&amp;ldquo;sharded&amp;rdquo;) and stored on the computers of other network participants.</description>
+    </item>
+    
+  </channel>
+</rss>
