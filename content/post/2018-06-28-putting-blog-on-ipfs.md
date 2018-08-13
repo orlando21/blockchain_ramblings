@@ -225,4 +225,4 @@ I should also mention that the webUI ([http://localhost:5001/webui](http://local
 
 **Note**: You must have `ipfs daemon` running to view the webUI.
 
-**Up next**: [Some details of IPFS](https://frozen-oasis-28875.herokuapp.com/post/2018/08/10/details-of-ipfs)
+**Up next**: [Some details of IPFS](https://frozen-oasis-28875.herokuapp.com/post/2018/08/10/putting-blog-on-ipfs)
