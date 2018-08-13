@@ -11,7 +11,7 @@ Enough of preliminaries, let's get this party started! We're going to use [IPFS]
 
 The first thing I did was to head over to the [IPFS home page](https://ipfs.io/) and install it on my Macbook. There, IPFS concepts are clearly explained and I'd recommend watching the [demo video](https://youtu.be/8CMxDNuuAiQ) to get started.
 
-The first version of IPFS was written in the Go language, so I'm going with that and installing Go on my Mac as a prerequisite. I'm not going to cover the install steps for IPFS here as it's [adequately done elsewhere](https://ipfs.io/docs/install/). One resource I found useful after installation was the IPFS tutorials [listed here](https://ipfs.io/docs/examples/), which show you the mechanics of IPFS and different use cases.
+The first version of IPFS was written in the Go language, so I'm going with that and installing Go on my Mac as a prerequisite (I know, that sounds arbitrary!). I'm not going to cover the install steps for IPFS here as it's [adequately done elsewhere](https://ipfs.io/docs/install/). One resource I found useful after installation was the IPFS tutorials [listed here](https://ipfs.io/docs/examples/), which show you the mechanics of IPFS and different use cases.
 
 Also, Coral Health has written a good primer on how to use IPFS to [exchange encrypted files with someone](https://medium.com/@mycoralhealth/learn-to-securely-share-files-on-the-blockchain-with-ipfs-219ee47df54c). The tutorial combines both IPFS and [GNU Privacy Guard](https://www.gnupg.org/) for encrypting and decrypting files.
 
@@ -21,7 +21,7 @@ I'm going to follow some broad steps in setting this up:
 
 1. Add this blog to IPFS
 2. Create a permanent top-level address (hash) for this blog using IPNS
-3. Publish this blog on the internet via hosting and DNS
+3. Publish this blog on the Internet via hosting and DNS
 
 ### Adding this blog to IPFS
 
@@ -165,9 +165,9 @@ QmeR3BusgtxTXVivARRDu8fRSqLBBjQ6vruVAiqSizSAaj 221   static/
 QmeGQ6WF6cWgjTTinASM5Lpvg7aqYXkQESPAm1QwqjiuRB 27553 themes/
 ~~~
 
-### Getting a permanent address for this blog (in IPFS)
+### Getting a semi-permanent address for this blog (in IPFS)
 
-The thing is, every time I update my blog, the hashes for the respective files will change (the old hashes are still valid for previous versions of the content). What's needed is a DNS-like permanent pointer that enables everyone to access the blog. For that we'll use the [Interplanetary Naming System](https://ipfs.io/ipfs/QmNZiPk974vDsPmQii3YbrMKfi12KTSNM7XMiYyiea4VYZ/example#/ipfs/QmP8WUPq2braGQ8iZjJ6w9di6mzgoTWyRLayrMRjjDoyGr/ipns/readme.md).
+The thing is, every time I update my blog, the hashes for the respective files (blocks) will change -- the old hashes are still valid for previous versions of the content. What's needed is a DNS-like permanent pointer that enables everyone to access the blog. For that we'll use the [Interplanetary Naming System](https://ipfs.io/ipfs/QmNZiPk974vDsPmQii3YbrMKfi12KTSNM7XMiYyiea4VYZ/example#/ipfs/QmP8WUPq2braGQ8iZjJ6w9di6mzgoTWyRLayrMRjjDoyGr/ipns/readme.md).
 
 ~~~bash
 $ ipfs name publish Qmcn3JBpV6UshFgnUdWQgzzbhWdXqzRY8qoWmBMEpnGqGL
@@ -204,11 +204,25 @@ There we go. The folder is now associated with the RSA key I just created. This 
 
 ### Issues with IPNS
 
-It's not all roses though. When I afterwards ran `ipfs ls` on the public key I just created, it seemed to hang forever (running this on the original hash for my_blog produces the expected results howver).
+It's not all roses though. When I afterwards ran `ipfs ls` on the public key I just created, it seemed to hang forever (running this on the original hash for my_blog produces the expected results however -- it seems this product is still in Alpha phase).
 
 Also, IPNS records [apparently expire](https://discuss.ipfs.io/t/ipfs-name-failing-to-resolve/1524/5) after every 24 hours, and if I don't keep the IPFS daemon locally they'll disappear entirely. This means that if I want to keep using IPNS, I will have to re-run the daemon, as well as re-run the `ipfs name publish` command on the public key.
 
 Therefore if you can't find the files of this blog at:
 https://gateway.ipfs.io/ipns/QmeeDDVNoHZkuweMbcBaiFqxwQNUr7RemgLHp6Zz8qx43S (just-generated public key)...
 
-...it's a safer bet you can always find them using my peer ID: https://gateway.ipfs.io/ipns/QmZUfPKG3B5D3QWRq4ytDHiUhJyFQE48avxpz6zGuZQe5f
+...it's a safer bet you can find them using my peer ID: https://gateway.ipfs.io/ipns/QmZUfPKG3B5D3QWRq4ytDHiUhJyFQE48avxpz6zGuZQe5f
+
+### Linking IPNS to DNS
+
+If I wanted to take out a dedicated domain name for this blog (especially for a human-readable domain name rather than an ugly IPNS hash), I could go through the regular motions of buying a domain name but then link this domain to IPNS.
+
+To do so, I would add a TXT record in DNS that contains a [dnslink](https://github.com/ipfs/go-dnslink) to have the blog domain name point to the published IPNS hash. You can find an example of this [here](https://blog.de-swaef.eu/using-ipfs-to-host-your-dapp/).
+
+### A web GUI for IPFS
+
+I should also mention that the webUI ([http://localhost:5001/webui](http://localhost:5001/webui)) also provides some useful information at a glance, such as your peer ID and related network addresses in the swarm.
+
+**Note**: You must have `ipfs daemon` running to view the webUI.
+
+**Up next**: [Some details of IPFS](https://frozen-oasis-28875.herokuapp.com/post/2018/08/10/details-of-ipfs)

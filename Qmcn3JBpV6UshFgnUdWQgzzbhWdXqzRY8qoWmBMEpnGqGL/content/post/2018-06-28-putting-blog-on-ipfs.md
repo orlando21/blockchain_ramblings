@@ -21,7 +21,7 @@ I'm going to follow some broad steps in setting this up:
 
 1. Add this blog to IPFS
 2. Create a permanent top-level address (hash) for this blog using IPNS
-3. Publish this blog on the internet via hosting and DNS
+3. Publish this blog on the Internet via hosting and DNS
 
 ### Adding this blog to IPFS
 
