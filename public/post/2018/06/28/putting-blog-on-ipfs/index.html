@@ -68,9 +68,9 @@
 
 <p>Enough of preliminaries, let&rsquo;s get this party started! We&rsquo;re going to use <a href="https://github.com/ipfs/ipfs">IPFS</a> for what it was made: to store some content.</p>
 
-<p>The first thing I did was to head over to the <a href="https://ipfs.io/">IPFS home page</a> and install it on my macbook. There, IPFS concepts are clearly explained and I&rsquo;d recommend watching the <a href="https://youtu.be/8CMxDNuuAiQ">demo video</a> to get started.</p>
+<p>The first thing I did was to head over to the <a href="https://ipfs.io/">IPFS home page</a> and install it on my Macbook. There, IPFS concepts are clearly explained and I&rsquo;d recommend watching the <a href="https://youtu.be/8CMxDNuuAiQ">demo video</a> to get started.</p>
 
-<p>The first version of IPFS was written in the Go language, so I&rsquo;m going with that and installing Go on my mac as a prerequisite. I&rsquo;m not going to cover the install steps for IPFS here as it&rsquo;s <a href="https://ipfs.io/docs/install/">adequately done elsewhere</a>. One resource I found useful after installation was the IPFS tutorials <a href="https://ipfs.io/docs/examples/">listed here</a>, which show you the mechanics of IPFS and different use cases.</p>
+<p>The first version of IPFS was written in the Go language, so I&rsquo;m going with that and installing Go on my Mac as a prerequisite (I know, that sounds arbitrary!). I&rsquo;m not going to cover the install steps for IPFS here as it&rsquo;s <a href="https://ipfs.io/docs/install/">adequately done elsewhere</a>. One resource I found useful after installation was the IPFS tutorials <a href="https://ipfs.io/docs/examples/">listed here</a>, which show you the mechanics of IPFS and different use cases.</p>
 
 <p>Also, Coral Health has written a good primer on how to use IPFS to <a href="https://medium.com/@mycoralhealth/learn-to-securely-share-files-on-the-blockchain-with-ipfs-219ee47df54c">exchange encrypted files with someone</a>. The tutorial combines both IPFS and <a href="https://www.gnupg.org/">GNU Privacy Guard</a> for encrypting and decrypting files.</p>
 
@@ -81,7 +81,7 @@
 <ol>
 <li>Add this blog to IPFS</li>
 <li>Create a permanent top-level address (hash) for this blog using IPNS</li>
-<li>Publish this blog on the internet via hosting and DNS</li>
+<li>Publish this blog on the Internet via hosting and DNS</li>
 </ol>
 
 <h3 id="adding-this-blog-to-ipfs">Adding this blog to IPFS</h3>
@@ -223,22 +223,22 @@ QmeR3BusgtxTXVivARRDu8fRSqLBBjQ6vruVAiqSizSAaj 221   static/
 QmeGQ6WF6cWgjTTinASM5Lpvg7aqYXkQESPAm1QwqjiuRB 27553 themes/
 </code></pre>
 
-<h3 id="getting-a-permanent-address-for-this-blog-in-ipfs">Getting a permanent address for this blog (in IPFS)</h3>
+<h3 id="getting-a-semi-permanent-address-for-this-blog-in-ipfs">Getting a semi-permanent address for this blog (in IPFS)</h3>
 
-<p>The thing is, every time I update my blog, the hashes for the respective files will change (the old hashes are still valid for previous versions of the content). What&rsquo;s needed is a DNS-like permanent pointer that enables everyone to access the blog. For that we&rsquo;ll use the <a href="https://ipfs.io/ipfs/QmNZiPk974vDsPmQii3YbrMKfi12KTSNM7XMiYyiea4VYZ/example#/ipfs/QmP8WUPq2braGQ8iZjJ6w9di6mzgoTWyRLayrMRjjDoyGr/ipns/readme.md">Interplanetary Naming System</a>.</p>
+<p>The thing is, every time I update my blog, the hashes for the respective files (blocks) will change &ndash; the old hashes are still valid for previous versions of the content. What&rsquo;s needed is a DNS-like permanent pointer that enables everyone to access the blog. For that we&rsquo;ll use the <a href="https://ipfs.io/ipfs/QmNZiPk974vDsPmQii3YbrMKfi12KTSNM7XMiYyiea4VYZ/example#/ipfs/QmP8WUPq2braGQ8iZjJ6w9di6mzgoTWyRLayrMRjjDoyGr/ipns/readme.md">Interplanetary Naming System</a>.</p>
 
 <pre><code class="language-bash">$ ipfs name publish Qmcn3JBpV6UshFgnUdWQgzzbhWdXqzRY8qoWmBMEpnGqGL
 Published to QmZUfPKG3B5D3QWRq4ytDHiUhJyFQE48avxpz6zGuZQe5f: /ipfs/Qmcn3JBpV6UshFgnUdWQgzzbhWdXqzRY8qoWmBMEpnGqGL
 </code></pre>
 
-<p>Here, I&rsquo;ve supplied the hash of the <code>my_blog</code> folder, and can now give this hash to anyone who wants to access the blog.</p>
+<p>Here, I&rsquo;ve supplied the hash of the <code>my_blog</code> folder, which is published to my IPFS peer ID (<code>QmZUfPKG3B5D3QWRq4ytDHiUhJyFQE48avxpz6zGuZQe5f</code> &ndash; which was generated when I first ran <code>ipfs init</code> back in the IPFS installation steps). Running <code>ipfs init</code> creates both a hash of my public key (this hash becomes my peer ID), as well as a private key (stored in <code>$HOME/.ipfs</code>).</p>
 
-<p>In the line <code>Published to</code> above, the first hash is actually my peer ID, which was generated when I ran <code>ipfs init</code> back in the IPFS installation steps. Initializing an IPFS repo in such a way creates both a hash of my public key (this hash becomes my peer ID), as well as a private key (stored in <code>$HOME/.ipfs</code>).</p>
-
-<p>For now on, I can also access my blog using the gateway:
+<p>For now on, I can also access the files of my blog using the gateway:
 <a href="https://gateway.ipfs.io/ipns/QmZUfPKG3B5D3QWRq4ytDHiUhJyFQE48avxpz6zGuZQe5f">https://gateway.ipfs.io/ipns/QmZUfPKG3B5D3QWRq4ytDHiUhJyFQE48avxpz6zGuZQe5f</a></p>
 
-<p>Notice the hash provided is my peer ID. It should be mentioned that here, I&rsquo;m publishing my site under my peer or node ID. This is fine for now if I have only one site, but what if I have several? Then I would generate a separate key for each site and publish under each key, as described in this <a href="https://www.reddit.com/r/ipfs/comments/74mur0/howto_putting_my_blog_on_ipfs/">Reddit thread</a>.</p>
+<p>One thing to note here is that displaying the above link just gives back a listing of the files of my blog. You won&rsquo;t get the look &amp; feel of the generated static site provided by Hugo.</p>
+
+<p>This is fine for now if I have only one site, but what if I want to publish several sites to one node? Then I would generate a separate key for each site and publish under each key, as described in this <a href="https://www.reddit.com/r/ipfs/comments/74mur0/howto_putting_my_blog_on_ipfs/">Reddit thread</a>.</p>
 
 <p>Actually let&rsquo;s try that:</p>
 
@@ -259,9 +259,28 @@ Published to QmeeDDVNoHZkuweMbcBaiFqxwQNUr7RemgLHp6Zz8qx43S: /ipfs/Qmcn3JBpV6Ush
 
 <h3 id="issues-with-ipns">Issues with IPNS</h3>
 
-<p>It&rsquo;s not all roses though. When I afterwards ran <code>ipfs ls</code> on the public key I just created, it seemed to hang forever (running this on the original hash for my_blog produces the expected results howver).</p>
+<p>It&rsquo;s not all roses though. When I afterwards ran <code>ipfs ls</code> on the public key I just created, it seemed to hang forever (running this on the original hash for my_blog produces the expected results however &ndash; it seems this product is still in Alpha phase).</p>
 
-<p>Also, IPNS records <a href="https://discuss.ipfs.io/t/ipfs-name-failing-to-resolve/1524/5">apparently expire</a> after every 24 hours, and if I don&rsquo;t run IPFS daemon they&rsquo;ll disappear entirely. This means that if I want to keep using IPNS, I will have to re-run the daemon, as well as re-run the <code>ipfs name publish</code> command on the public key.</p>
+<p>Also, IPNS records <a href="https://discuss.ipfs.io/t/ipfs-name-failing-to-resolve/1524/5">apparently expire</a> after every 24 hours, and if I don&rsquo;t keep the IPFS daemon locally they&rsquo;ll disappear entirely. This means that if I want to keep using IPNS, I will have to re-run the daemon, as well as re-run the <code>ipfs name publish</code> command on the public key.</p>
+
+<p>Therefore if you can&rsquo;t find the files of this blog at:
+<a href="https://gateway.ipfs.io/ipns/QmeeDDVNoHZkuweMbcBaiFqxwQNUr7RemgLHp6Zz8qx43S">https://gateway.ipfs.io/ipns/QmeeDDVNoHZkuweMbcBaiFqxwQNUr7RemgLHp6Zz8qx43S</a> (just-generated public key)&hellip;</p>
+
+<p>&hellip;it&rsquo;s a safer bet you can find them using my peer ID: <a href="https://gateway.ipfs.io/ipns/QmZUfPKG3B5D3QWRq4ytDHiUhJyFQE48avxpz6zGuZQe5f">https://gateway.ipfs.io/ipns/QmZUfPKG3B5D3QWRq4ytDHiUhJyFQE48avxpz6zGuZQe5f</a></p>
+
+<h3 id="linking-ipns-to-dns">Linking IPNS to DNS</h3>
+
+<p>If I wanted to take out a dedicated domain name for this blog (especially for a human-readable domain name rather than an ugly IPNS hash), I could go through the regular motions of buying a domain name but then link this domain to IPNS.</p>
+
+<p>To do so, I would add a TXT record in DNS that contains a <a href="https://github.com/ipfs/go-dnslink">dnslink</a> to have the blog domain name point to the published IPNS hash. You can find an example of this <a href="https://blog.de-swaef.eu/using-ipfs-to-host-your-dapp/">here</a>.</p>
+
+<h3 id="a-web-gui-for-ipfs">A web GUI for IPFS</h3>
+
+<p>I should also mention that the webUI (<a href="http://localhost:5001/webui">http://localhost:5001/webui</a>) also provides some useful information at a glance, such as your peer ID and related network addresses in the swarm.</p>
+
+<p><strong>Note</strong>: You must have <code>ipfs daemon</code> running to view the webUI.</p>
+
+<p><strong>Up next</strong>: <a href="https://frozen-oasis-28875.herokuapp.com/post/2018/08/10/details-of-ipfs">Some details of IPFS</a></p>
 
 </main>
 

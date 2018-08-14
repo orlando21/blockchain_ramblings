@@ -1,0 +1,206 @@
+<!DOCTYPE html>
+<html lang="en-us">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Some details of IPFS | Classic</title>
+    <link rel="stylesheet" href="../../../../../css/style.css" />
+    <link rel="stylesheet" href="../../../../../css/fonts.css" />
+    <link rel="stylesheet" href="../../../../../css/theme-override.css">
+    <header>
+
+  
+  <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/atom-one-light.min.css">
+  <script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/highlight.min.js"></script>
+  <script>hljs.initHighlightingOnLoad();</script>
+  <base href="../../../../../">
+  <nav>
+    <ul>
+      
+      
+
+      
+      
+      <li class="pull-left ">
+        <a href="../../../../../">~/home</a>
+      </li>
+      
+      
+      <li class="pull-left ">
+        <a href="../../../../../categories/">~/categories</a>
+      </li>
+      
+      
+      <li class="pull-left ">
+        <a href="../../../../../tags/">~/tags</a>
+      </li>
+      
+
+      
+
+    </ul>
+  </nav>
+</header>
+
+  </head>
+
+  <body>
+    <br/>
+
+<div class="article-meta">
+  <h2><span class="title">Some details of IPFS</span></h2>
+  <p class="date small">Aug 10, 2018</p>
+  <p class="terms small">
+  
+  
+  Categories: <a href="../../../../../categories/file-storage">File storage</a> 
+  
+  
+  
+  
+  </p>
+</div>
+
+
+
+<main>
+
+
+<p>The concepts behind IPFS are explained at length in the <a href="https://ipfs.io/ipfs/QmR7GSQM93Cx5eAg6a6yRzNde1FQv7uL6X1o4k7zrJa3LX/ipfs.draft3.pdf">whitepaper</a> but I just want to cover some of its highlights here. I won&rsquo;t go into these in too much detail &ndash; the whitepaper, along with plenty of other sources would provide better descriptions of these concepts.</p>
+
+<h3 id="distributed-hash-tables-dhts">Distributed hash tables (DHTs)</h3>
+
+<p>The white paper lays out a concept for a routing system that can &ldquo;find (a) other peers&rsquo; network addresses and (b) peers who can serve particular objects.&rdquo; This routing system is based on various flavors of hash tables (key, value pairs &ndash; where a key is the hash over the content, and a value can be either the content of the block itself, or a reference to the node ID containing the content in case of larger file sizes) that are distributed on the vast, peer-to-peer network of IPFS. That is, each node in the network contributes to the distributed hash table that is used to find the location of a given block of content.</p>
+
+<p>This <a href="https://en.wikipedia.org/wiki/Distributed_hash_table">Wikipedia article</a> has a good description of distributed hash tables in general.</p>
+
+<p>The whitepaper describes several implementations of DHT, all of which IPFS uses: Kademlia, Coral DSHT, and S/Kademlia.</p>
+
+<p>IPFS offers a number of commands to directly query or write to the DHT, all beginning with <code>ipfs dht</code>:</p>
+
+<ul>
+<li><code>ipfs dht findpeer</code></li>
+<li><code>ipfs dht findprovs</code></li>
+<li><code>ipfs dht get</code></li>
+<li><code>ipfs dht provide</code></li>
+<li><code>ipfs dht put</code></li>
+<li><code>ipfs dht query</code></li>
+</ul>
+
+<p>IPFS&rsquo; DHT works with a messaging system to alert other nodes of new data in order to ensure efficient routing and location of content among the nodes.</p>
+
+<h3 id="bittorrent">BitTorrent</h3>
+
+<p>For exchanging data (blocks) among nodes, IPFS makes use of a customized version of BitTorrent. We&rsquo;ve all heard of BitTorrent in the context of downloading movies from the web, but IPFS uses it to organize a big swarm of peers and enforce file sharing rules.</p>
+
+<p>According to the IPFS whitepaper, its flavor of BitTorrent data exchange protocol (referred to as &ldquo;BitSwap&rdquo;) has two main features &ndash; both of which being standard BitTorrent features apparently:</p>
+
+<ul>
+<li>It uses a &ldquo;quasi tit-for-tat strategy that rewards nodes who contribute to each other, and punishes nodes who only leech others&rsquo; resources.&rdquo;</li>
+<li>Its peers track &ldquo;the availability of file pieces, prioritizing sending rarest pieces first.&rdquo;</li>
+</ul>
+
+<p>All of this comes together to create a network that shares content while being resilient against abuse. BitSwap implements a credit and debit system, based on past data exchanges, to decide who shares which content.</p>
+
+<p>There are even protocols that implement cryptocurrencies (such as <a href="https://filecoin.io/">Filecoin</a>) to optimize file sharing in alternative ways.</p>
+
+<h3 id="version-control">Version control</h3>
+
+<p>Some people have called IPFS &ldquo;git for the Web,&rdquo; and this point is easily seen as IPFS implements the Git protocol, which incorporates &ldquo;a powerful Merkle DAG object model that captures changes to a filesystem tree in a distributed friendly way&rdquo; as the IPFS whitepaper puts it.</p>
+
+<p>What does this mean? Again, quoting the whitepaper:</p>
+
+<blockquote>
+<ol>
+<li>Immutable objects represent Files (blob), Directories
+(tree), and Changes (commit).</li>
+<li>Objects are content-addressed, by the cryptographic
+hash of their contents.</li>
+<li>Links to other objects are embedded, forming a Merkle
+DAG. This provides many useful integrity and workflow
+properties.</li>
+<li>Most versioning metadata (branches, tags, etc.) are
+simply pointer references, and thus inexpensive to create
+and update.</li>
+<li>Version changes only update references or add objects.</li>
+<li>Distributing version changes to other users is simply
+transferring objects and updating remote references.</li>
+</ol>
+</blockquote>
+
+<p><a href="https://github.com/jbenet/random-ideas/issues/20">This thread</a> gives a simplified description of the Merkle DAG implemented in IPFS, though one can peruse other sources to get finer details.</p>
+
+<p>With git version control, IPFS keeps track of both changes in content as well as the locations (hashes) of each version of changed content.</p>
+
+<p>Currently though, it seems versioning has not yet been fully implemented and is a <a href="https://gist.github.com/flyingzumwalt/a6821e843366d606aeb1ba53525b8669">work in progress</a>.</p>
+
+<h3 id="self-certified-filesystems-sfs">Self-certified filesystems (SFS)</h3>
+
+<p>The naming system of IPFS &ndash; IPNS &ndash; is implemented via SFS. This allows users to generate an address for a remote filesystem in such a way that they can verify the address&rsquo; validity. Per the whitepaper: &ldquo;The user can verify the public key offered by the server, negotiate a shared secret, and secure all traffic. All SFS instances share a global namespace where name allocation is cryptographic, not gated by any centralized body.&rdquo;</p>
+
+<p>The name allocation is cryptographic to allow verification and prevent imposter nodes from showing up and claiming they&rsquo;re legitimate.</p>
+
+<p>SFS creates a system of pointers to these cryptographic addresses to content, much as git creates branches and tags, and these pointers are updated to reflect new content (addresses). In this way, the content remains immutable, while the pointers can represent the latest version of the content.</p>
+
+<p>This ties into IPNS, as the content that the top-level IPNS address (root address of a node) points to gets updated when you publish an IPFS object to this address.</p>
+
+<h3 id="ipfs-design">IPFS design</h3>
+
+<p>IPFS is designed as a peer-to-peer system with no privileged nodes. It incorporates a protocol stack of sub-protocols handling the following aspects (descriptions taken from the whitepaper):</p>
+
+<ul>
+<li>Identities &ndash; manage node identity generation and verification.</li>
+<li>Network &ndash; manages connections to other peers, uses
+various underlying network protocols.</li>
+<li>Routing &ndash; maintains information to locate specific
+peers and objects. Responds to both local and remote
+queries. Defaults to a DHT, but is swappable.</li>
+<li>Exchange &ndash; a novel block exchange protocol (BitSwap)
+that governs efficient block distribution. Modelled as
+a market, weakly incentivizes data replication. Trade
+Strategies swappable.</li>
+<li>Objects &ndash; a Merkle DAG of content-addressed immutable
+objects with links. Note this layer of the stack is (or will be) implemented by <a href="https://ipld.io/">IPLD</a>. Used to represent arbitrary
+datastructures, e.g. file hierarchies and communication
+systems.</li>
+<li>Files &ndash; versioned file system hierarchy inspired by Git.</li>
+<li>Naming &ndash; a self-certifying mutable name system.</li>
+</ul>
+
+</main>
+
+    <footer>
+      
+<script>
+(function() {
+  function center_el(tagName) {
+    var tags = document.getElementsByTagName(tagName), i, tag;
+    for (i = 0; i < tags.length; i++) {
+      tag = tags[i];
+      var parent = tag.parentElement;
+      
+      if (parent.childNodes.length === 1) {
+        
+        if (parent.nodeName === 'A') {
+          parent = parent.parentElement;
+          if (parent.childNodes.length != 1) continue;
+        }
+        if (parent.nodeName === 'P') parent.style.textAlign = 'center';
+      }
+    }
+  }
+  var tagNames = ['img', 'embed', 'object'];
+  for (var i = 0; i < tagNames.length; i++) {
+    center_el(tagNames[i]);
+  }
+})();
+</script>
+
+      
+      <hr/>
+      Powered by <a href="https://gohugo.io/">Hugo</a> | <a href="https://themes.gohugo.io/hugo-classic/">Classic Theme</a> | Blog by <a href="https://twitter.com/grbabb">Greg Babb</a>
+      
+    </footer>
+  </body>
+</html>
+

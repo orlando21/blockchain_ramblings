@@ -25,125 +25,96 @@ I'm going to follow some broad steps in setting this up:
 
 ### Adding this blog to IPFS
 
-This blog uses Hugo to generate static files so I have these files to add:
+This blog uses Hugo to generate static files so I should add the generated files in the `./public` subdirectory:
 
 ~~~bash
-my_blog
-├── archetypes
-│   └── default.md
-├── config.toml
-├── content
-│   ├── _index.md
-│   └── post
-│       ├── 2018-06-27-first-look-ipfs.md
-│       └── 2018-06-28-putting-blog-on-ipfs.md
-├── data
-├── layouts
-├── static
-│   └── css
-│       └── theme-override.css
-└── themes
-    └── hugo-classic
-        ├── LICENSE.md
-        ├── README.md
-        ├── archetypes
-        │   └── default.md
-        ├── exampleSite
-        │   ├── config.toml
-        │   ├── content
-        │   └── static
-        │       └── css
-        │           └── theme-override.css
-        ├── images
-        ├── layouts
-        │   ├── 404.html
-        │   ├── _default
-        │   │   ├── list.html
-        │   │   ├── single.html
-        │   │   └── terms.html
-        │   └── partials
-        │       ├── foot_custom.html
-        │       ├── footer.html
-        │       ├── head_custom.html
-        │       └── header.html
-        ├── static
-        │   └── css
-        │       ├── fonts.css
-        │       └── style.css
-        ├── theme.toml
+public
+.
+├── 404.html
+├── categories
+│   ├── file-storage
+│   │   ├── index.html
+│   │   └── index.xml
+│   ├── index.html
+│   └── index.xml
+├── css
+│   ├── fonts.css
+│   ├── style.css
+│   └── theme-override.css
+├── img
+├── index.html
+├── index.xml
+├── post
+│   ├── 2018
+│   │   ├── 06
+│   │   │   ├── 27
+│   │   │   │   └── first-look-at-ipfs
+│   │   │   │       └── index.html
+│   │   │   └── 28
+│   │   │       └── putting-blog-on-ipfs
+│   │   │           └── index.html
+│   │   └── 08
+│   │       └── 10
+│   │           └── details-of-ipfs
+│   │               └── index.html
+│   ├── index.html
+│   └── index.xml
+├── sitemap.xml
+└── tags
+    ├── index.html
+    └── index.xml
 ~~~
 
 The command to add a directory with files and subfolders to IPFS is:
 
 ~~~bash
-ipfs add -r my_blog/
+ipfs add -r public
 ~~~
 
 This recursively converts all files and subdirectories to hashes, adding them to IPFS:
 
 ~~~bash
-added QmfLoX7TUHKWahmQK9zBmJSLmginoiUzCPWhT9ZsFoqn7u my_blog/archetypes/default.md
-added QmbmhGjFGuu6FrXyKprVbperkuzVW8UNXbfb88pHogMJQw my_blog/config.toml
-added Qmb3SuYbav8Kj6t9oVjGj832Uvu35CKNFC1iVK9JLLwXBy my_blog/content/_index.md
-added QmZAPCrNEZ62ZrjcusznKaMMkMkXQ2TEBuHf3KpW5L4dkp my_blog/content/post/2018-06-27-first-look-ipfs.md
-added QmeRWGwEohppNXdUxgn1E8Dy9RM8jFoyvJwveKem3BiqHT my_blog/content/post/2018-06-28-putting-blog-on-ipfs.md
-added QmVMkg3C1kQ2Mcdz1sjLBWvQLPEXu7iHYJfYtewaALrgkY my_blog/static/css/theme-override.css
-added QmaHnndJLrMjgyVF11vEryUj9KvZ4ENEia9MPt7uX5XFst my_blog/themes/hugo-classic/LICENSE.md
-added QmRc7Teue2eDnyCAgAwpwpf5g7AiY98pmvuP7m3jKQYif2 my_blog/themes/hugo-classic/README.md
-added QmcC419gL8J4RMPn8UV9F7aW2SDe7pYW5EXFrzafRnvqSy my_blog/themes/hugo-classic/archetypes/default.md
-added QmUHd4GVD1dMzowp8bNnXHFvqW8SrFDkn7mUd1bFuqmhiL my_blog/themes/hugo-classic/exampleSite/config.toml
-added QmNiRtJfJQaBJjFMxeytwJ61F4XUMVbAuFoY6sNGkZBsZv my_blog/themes/hugo-classic/exampleSite/content/_index.md
-added QmXQBCG2vaoWYSKDZ1jotB5ryGszokjvGXmn7vovsMNDrk my_blog/themes/hugo-classic/exampleSite/content/post/2012-01-23-juicy-code.md
-added QmQKHftTAtkdaBcUebfFjaXpv8c6VncRLSd6CovM5gWMSr my_blog/themes/hugo-classic/exampleSite/content/post/2012-04-23-hacker-with-horn.md
-added QmNmu3Tms4VrN56vfcJmSe3hKBs29LpDTMGxtpf9pe6k9G my_blog/themes/hugo-classic/exampleSite/content/post/2015-07-23-command-line-awesomeness.md
-added QmfBHr9jk4N3MXoDvWaTCTEeaMGMVSgyXQzCHEycYyH1GL my_blog/themes/hugo-classic/exampleSite/content/post/2016-02-14-markdown-guide.md
-added QmVMkg3C1kQ2Mcdz1sjLBWvQLPEXu7iHYJfYtewaALrgkY my_blog/themes/hugo-classic/exampleSite/static/css/theme-override.css
-added QmPBbTCuPcQH8osyNH8Mw6PQh44ezSnJiyoTvRyKKVNjFd my_blog/themes/hugo-classic/layouts/404.html
-added QmTp9HkG7fpemRibMkywimkx6Hrt9uFUNrYW29a7chqqdi my_blog/themes/hugo-classic/layouts/_default/list.html
-added QmSzixQ4DqhFD7gmwHxnZ6ceSmprJRCTHwdsc8pueUhzqR my_blog/themes/hugo-classic/layouts/_default/single.html
-added QmcS3jbxuCXqPHFAnGs5F13EXUnSXHYvkpQs94UfErMsXY my_blog/themes/hugo-classic/layouts/_default/terms.html
-added QmR6tt8iPfQbC8tBVC7VN9UNbPMy2tEZ14WHyhJfRwSkHF my_blog/themes/hugo-classic/layouts/partials/foot_custom.html
-added QmbRCcKDkUibQY4iuxNaXFgMLykVaDFMSvQ7jCqYfL34Wo my_blog/themes/hugo-classic/layouts/partials/footer.html
-added QmU13puBLEQKT7dgsjo2MTxETV2gPD4sBEn6FF82CUsDLG my_blog/themes/hugo-classic/layouts/partials/head_custom.html
-added QmdrTkLkdR9hstWr5cngtTowVPx1efDYyyDaAAK8mBh3vv my_blog/themes/hugo-classic/layouts/partials/header.html
-added QmRypkLZw1JL9Qb1cNTHasAvRsyrWGHJt8kUybmYiUsaX7 my_blog/themes/hugo-classic/static/css/fonts.css
-added QmZ5amcnGzNuYB5rnd6HkeFHAUHzfeEL3UoytyDP7VdKkm my_blog/themes/hugo-classic/static/css/style.css
-added QmTGNk3ACd1UnSru2ojjG7QK4HX1FPaUM3KfpT6SQcVDVr my_blog/themes/hugo-classic/theme.toml
-added QmXQBCG2vaoWYSKDZ1jotB5ryGszokjvGXmn7vovsMNDrk my_blog/themes/hugo-classic/theme_posts/2012-01-23-juicy-code.md
-added QmQKHftTAtkdaBcUebfFjaXpv8c6VncRLSd6CovM5gWMSr my_blog/themes/hugo-classic/theme_posts/2012-04-23-hacker-with-horn.md
-added QmNmu3Tms4VrN56vfcJmSe3hKBs29LpDTMGxtpf9pe6k9G my_blog/themes/hugo-classic/theme_posts/2015-07-23-command-line-awesomeness.md
-added QmfBHr9jk4N3MXoDvWaTCTEeaMGMVSgyXQzCHEycYyH1GL my_blog/themes/hugo-classic/theme_posts/2016-02-14-markdown-guide.md
-added Qmd7a6si9AxwjWZf4fuEWVUxjJ9G9C5pWJh7a3SCc2qr6V my_blog/archetypes
-added QmdNivpjNgtAPHRvwgUL2iSsw4vawNUbWiqwFgfK24AzTS my_blog/content/post
-added Qmeab2t3kDSrtWwZw7YEA8NFMKg8A9KgiBJw9axLqABrmo my_blog/content
-added QmUNLLsPACCz1vLxQVkXqqLX5R1X345qqfHbsf67hvA3Nn my_blog/data
-added QmUNLLsPACCz1vLxQVkXqqLX5R1X345qqfHbsf67hvA3Nn my_blog/layouts
-added QmNdeeHToTMRQRxPnSgZbJMm95jqAWwBUfR2bJQXKUvpVC my_blog/static/css
-added QmUNLLsPACCz1vLxQVkXqqLX5R1X345qqfHbsf67hvA3Nn my_blog/static/img
-added QmeR3BusgtxTXVivARRDu8fRSqLBBjQ6vruVAiqSizSAaj my_blog/static
-added QmVP9ggRf3GGAseLrzUPoTkHDgwMwidMUpXpSFa6LfifzG my_blog/themes/hugo-classic/archetypes
-added QmQ5j4tWQ6PCPZCRniL3cjkHnFGvjp5VbfjPy6YmDW3RrL my_blog/themes/hugo-classic/exampleSite/content/post
-added Qmbw8hq5FZ8yHGcJ2Vhv9rpyV7494vaBvQKFzfVsRewAsw my_blog/themes/hugo-classic/exampleSite/content
-added QmNdeeHToTMRQRxPnSgZbJMm95jqAWwBUfR2bJQXKUvpVC my_blog/themes/hugo-classic/exampleSite/static/css
-added QmTQTecvCGKTxgjqsx3cew4AUuhKp7CRa7t4KB13gFN2kw my_blog/themes/hugo-classic/exampleSite/static
-added QmfToyn26mcF2bHnbnHPWnWFJJf4vvnA5F9dSK1zSsbAik my_blog/themes/hugo-classic/exampleSite
-added QmUNLLsPACCz1vLxQVkXqqLX5R1X345qqfHbsf67hvA3Nn my_blog/themes/hugo-classic/images
-added QmeNvYxWp3d35Z2mcZoSoA4MZJHV1oMdxEvcYHwmtMcZaM my_blog/themes/hugo-classic/layouts/_default
-added QmdqoPChpr1DagXYp7q1q1HY6rfcwA82XFD2UQWQ1bHvSh my_blog/themes/hugo-classic/layouts/partials
-added Qmc4q3exZjNeZX3Uxb5v92rYZYRApNrFV6qnXCWidnXAgZ my_blog/themes/hugo-classic/layouts
-added QmabZ344Vnamxxje9P6FpD7ee6j2cBqmGah5WMF9erVEeb my_blog/themes/hugo-classic/static/css
-added Qmau5yWr9vLWQmEWNEgEByxeLHSG2w5i1ocX5sakEGEKwi my_blog/themes/hugo-classic/static
-added QmQ5j4tWQ6PCPZCRniL3cjkHnFGvjp5VbfjPy6YmDW3RrL my_blog/themes/hugo-classic/theme_posts
-added QmeTaM8URvA4D7UaBHDX4cxy9uNAbTxSgbxWg2TQGQ7hv5 my_blog/themes/hugo-classic
-added QmeGQ6WF6cWgjTTinASM5Lpvg7aqYXkQESPAm1QwqjiuRB my_blog/themes
-added Qmcn3JBpV6UshFgnUdWQgzzbhWdXqzRY8qoWmBMEpnGqGL my_blog
+added QmVedFEQrND4Nr8w8ELFDLoPuXupc6FkEM821XJ7x3JdmR public/404.html
+added QmbEX1G6EYdhkPiPsjTtHXeSVuDWq7nEyrbLyHNuGJyUkL public/categories/file-storage/index.html
+added QmU6UnRCunGvWdYBuA5hpWGNcydngGDtGFLfaEqFaTDJ6v public/categories/file-storage/index.xml
+added QmfGbdxwHCbABj3AzUZi8RZbCS2ccDr64YH3EFh4yxK6jU public/categories/index.html
+added QmTnowVWaPRYgygE2jLpvdqfcqZfuAEwZ89WPRHQJgqUPF public/categories/index.xml
+added QmRypkLZw1JL9Qb1cNTHasAvRsyrWGHJt8kUybmYiUsaX7 public/css/fonts.css
+added QmZ5amcnGzNuYB5rnd6HkeFHAUHzfeEL3UoytyDP7VdKkm public/css/style.css
+added QmVMkg3C1kQ2Mcdz1sjLBWvQLPEXu7iHYJfYtewaALrgkY public/css/theme-override.css
+added QmX5YyE9CuyGpAzsy6iMaiRGsqDJWGBKURxLqF7zs4jjog public/index.html
+added QmQkDmVgXRdQEs3Wo7nUqt14k7U4jRBUrKKrUWRK7TXzRT public/index.xml
+added QmXWvtwnHD479kQMGMq3XKyqCFWLkLKe9pF9tWZRCqLNXh public/post/2018/06/27/first-look-at-ipfs/index.html
+added QmYBVTXdUJ8MkhLxCyfupMTKnbLySMxjiecEuNz9aFGont public/post/2018/06/28/putting-blog-on-ipfs/index.html
+added QmPTft89CFjMnRSV7aK6L3NWjuni7opH1cgvQNPmid8bWN public/post/2018/08/10/details-of-ipfs/index.html
+added QmQx4L8o8bMR3HMajTRxrZWZFRaUDfZRvQGfXc2S2Pe5Ng public/post/index.html
+added QmYokEVQHEtoT9mxwZM8ntja1TKM5Z37uyZqbVeZHK3k7r public/post/index.xml
+added QmTG3i4Lob16YL6QhEHDnTzHw3pgiCKjBdbPvhhQe4msLF public/sitemap.xml
+added QmPBHbuXfTjTdcnF4pHPQf1LUC4N8W2hx3XpKi5otju3Wp public/tags/index.html
+added QmTSiCVPdFgtrnohx11XFuAijMJ9xUBFk8npsV9tqbAFzm public/tags/index.xml
+added QmVqEtdPjTELYgZNfFUKHqXszULxd78r6hADq2zpv5Wfda public/categories/file-storage
+added QmbmVetF6DYv4nKog5oujYtdpRu64FZyMt9DHGkjKonQiL public/categories
+added QmcbY2JVo4WD8pW7UQYUiqCPHuqWk1Paix3ES8mkwnTsAc public/css
+added QmUNLLsPACCz1vLxQVkXqqLX5R1X345qqfHbsf67hvA3Nn public/img
+added QmVdP1zMMevZRqJ2681CxTSJ4hoSWhKSxEHp19kRHoZR84 public/post/2018/06/27/first-look-at-ipfs
+added QmeTssqiHTa6kz3eFYQDQdUHpNybydCoJ1urXT18DSmMtu public/post/2018/06/27
+added QmUWp3zdAfvDekXSJgSWympRNXyqdgj8hLDsX3nTndetrT public/post/2018/06/28/putting-blog-on-ipfs
+added QmYGd4M1LQ47zDs4TpoE6GoCzX854emM5soxuKPjGMpvVL public/post/2018/06/28
+added QmahRqby8utv2zyZxDN8PavjwUTKayg2YVYHPNFgaUMJG5 public/post/2018/06
+added QmUe6qURFEj85K8YZUeSXXrDKtVnJ6Z7yob839qKFPduvx public/post/2018/08/10/details-of-ipfs
+added QmNYKQCKfMuGtoWBiZNEpyLDT8GoQKdi6ntXTGM3DsKsco public/post/2018/08/10
+added QmcJ3Tes4UGPHwUoBL498GYk7pwgeWguusyHRuFhUG7RmT public/post/2018/08
+added QmbBSN441bGFjwm12qf2WaBa4uscf3uXh1G9diNPkqrgUV public/post/2018
+added QmQ3kxAqPHtYQ9Ke4v3ftoNTdpzrvSa7uQMNaho1NPzcyD public/post
+added QmeMuCYFVF7fTPJRAZgQLS8PX9Xjcj4Ytni63B8BcK8Z7X public/tags
+added QmU6U2YsxY3Ebs87mzeh2ztRbkEXtGsR3UiVMUWpLnzPML public
 ~~~
 
 And voilà, the bottom, last hash represents the top-level folder, so we'll use that to access the site on IPFS. To do so, I could use either the local (node) or IPFS gateway respectively:
 
-http://localhost:8080/ipfs/Qmcn3JBpV6UshFgnUdWQgzzbhWdXqzRY8qoWmBMEpnGqGL
+http://localhost:8080/ipfs/QmU6U2YsxY3Ebs87mzeh2ztRbkEXtGsR3UiVMUWpLnzPML
 
-https://gateway.ipfs.io/ipfs/Qmcn3JBpV6UshFgnUdWQgzzbhWdXqzRY8qoWmBMEpnGqGL
+https://gateway.ipfs.io/ipfs/QmU6U2YsxY3Ebs87mzeh2ztRbkEXtGsR3UiVMUWpLnzPML
 
 You see, IPFS comes with an HTTP gateway that queries the decentralized hash table with the hash you provide, in order to request it from your machine and then send it to your browser. Although there's some centralizaton involved, it makes it easier to access files.
 
@@ -155,14 +126,16 @@ After adding the website to IPFS, entering a command such as the following shoul
 
 
 ~~~bash
-$ ipfs ls Qmcn3JBpV6UshFgnUdWQgzzbhWdXqzRY8qoWmBMEpnGqGL
-Qmd7a6si9AxwjWZf4fuEWVUxjJ9G9C5pWJh7a3SCc2qr6V 148   archetypes/
-QmbmhGjFGuu6FrXyKprVbperkuzVW8UNXbfb88pHogMJQw 808   config.toml
-Qmeab2t3kDSrtWwZw7YEA8NFMKg8A9KgiBJw9axLqABrmo 18813 content/
-QmUNLLsPACCz1vLxQVkXqqLX5R1X345qqfHbsf67hvA3Nn 4     data/
-QmUNLLsPACCz1vLxQVkXqqLX5R1X345qqfHbsf67hvA3Nn 4     layouts/
-QmeR3BusgtxTXVivARRDu8fRSqLBBjQ6vruVAiqSizSAaj 221   static/
-QmeGQ6WF6cWgjTTinASM5Lpvg7aqYXkQESPAm1QwqjiuRB 27553 themes/
+$ ipfs ls QmU6U2YsxY3Ebs87mzeh2ztRbkEXtGsR3UiVMUWpLnzPML
+QmVedFEQrND4Nr8w8ELFDLoPuXupc6FkEM821XJ7x3JdmR 1995  404.html
+QmbmVetF6DYv4nKog5oujYtdpRu64FZyMt9DHGkjKonQiL 8730  categories/
+QmcbY2JVo4WD8pW7UQYUiqCPHuqWk1Paix3ES8mkwnTsAc 2416  css/
+QmUNLLsPACCz1vLxQVkXqqLX5R1X345qqfHbsf67hvA3Nn 4     img/
+QmX5YyE9CuyGpAzsy6iMaiRGsqDJWGBKURxLqF7zs4jjog 4329  index.html
+QmQkDmVgXRdQEs3Wo7nUqt14k7U4jRBUrKKrUWRK7TXzRT 3053  index.xml
+QmQ3kxAqPHtYQ9Ke4v3ftoNTdpzrvSa7uQMNaho1NPzcyD 43956 post/
+QmTG3i4Lob16YL6QhEHDnTzHw3pgiCKjBdbPvhhQe4msLF 1033  sitemap.xml
+QmeMuCYFVF7fTPJRAZgQLS8PX9Xjcj4Ytni63B8BcK8Z7X 2584  tags/
 ~~~
 
 ### Getting a semi-permanent address for this blog (in IPFS)
@@ -170,16 +143,14 @@ QmeGQ6WF6cWgjTTinASM5Lpvg7aqYXkQESPAm1QwqjiuRB 27553 themes/
 The thing is, every time I update my blog, the hashes for the respective files (blocks) will change -- the old hashes are still valid for previous versions of the content. What's needed is a DNS-like permanent pointer that enables everyone to access the blog. For that we'll use the [Interplanetary Naming System](https://ipfs.io/ipfs/QmNZiPk974vDsPmQii3YbrMKfi12KTSNM7XMiYyiea4VYZ/example#/ipfs/QmP8WUPq2braGQ8iZjJ6w9di6mzgoTWyRLayrMRjjDoyGr/ipns/readme.md).
 
 ~~~bash
-$ ipfs name publish Qmcn3JBpV6UshFgnUdWQgzzbhWdXqzRY8qoWmBMEpnGqGL
-Published to QmZUfPKG3B5D3QWRq4ytDHiUhJyFQE48avxpz6zGuZQe5f: /ipfs/Qmcn3JBpV6UshFgnUdWQgzzbhWdXqzRY8qoWmBMEpnGqGL
+$ ipfs name publish QmU6U2YsxY3Ebs87mzeh2ztRbkEXtGsR3UiVMUWpLnzPML
+Published to QmZUfPKG3B5D3QWRq4ytDHiUhJyFQE48avxpz6zGuZQe5f: /ipfs/QmU6U2YsxY3Ebs87mzeh2ztRbkEXtGsR3UiVMUWpLnzPML
 ~~~
 
-Here, I've supplied the hash of the `my_blog` folder, which is published to my IPFS peer ID (`QmZUfPKG3B5D3QWRq4ytDHiUhJyFQE48avxpz6zGuZQe5f` -- which was generated when I first ran `ipfs init` back in the IPFS installation steps). Running `ipfs init` creates both a hash of my public key (this hash becomes my peer ID), as well as a private key (stored in `$HOME/.ipfs`).
+Here, I've supplied the hash of the `public` folder, which is published to my IPFS peer ID (`QmZUfPKG3B5D3QWRq4ytDHiUhJyFQE48avxpz6zGuZQe5f` -- that was generated when I first ran `ipfs init` back in the IPFS installation steps). Running `ipfs init` creates both a hash of my public key (this hash becomes my peer ID), as well as a private key (stored in `$HOME/.ipfs`).
 
 For now on, I can also access the files of my blog using the gateway:
 https://gateway.ipfs.io/ipns/QmZUfPKG3B5D3QWRq4ytDHiUhJyFQE48avxpz6zGuZQe5f
-
-One thing to note here is that displaying the above link just gives back a listing of the files of my blog. You won't get the look & feel of the generated static site provided by Hugo.
 
 This is fine for now if I have only one site, but what if I want to publish several sites to one node? Then I would generate a separate key for each site and publish under each key, as described in this [Reddit thread](https://www.reddit.com/r/ipfs/comments/74mur0/howto_putting_my_blog_on_ipfs/).
 
@@ -196,8 +167,8 @@ QmeeDDVNoHZkuweMbcBaiFqxwQNUr7RemgLHp6Zz8qx43S my_blog
 The name of the key I just generated is `my_blog`, so we can publish the hash of the top folder to that key on IPNS:
 
 ~~~bash
-$ ipfs name publish --key=my_blog Qmcn3JBpV6UshFgnUdWQgzzbhWdXqzRY8qoWmBMEpnGqGL
-Published to QmeeDDVNoHZkuweMbcBaiFqxwQNUr7RemgLHp6Zz8qx43S: /ipfs/Qmcn3JBpV6UshFgnUdWQgzzbhWdXqzRY8qoWmBMEpnGqGL
+$ ipfs name publish --key=my_blog QmU6U2YsxY3Ebs87mzeh2ztRbkEXtGsR3UiVMUWpLnzPML
+Published to QmeeDDVNoHZkuweMbcBaiFqxwQNUr7RemgLHp6Zz8qx43S: /ipfs/QmU6U2YsxY3Ebs87mzeh2ztRbkEXtGsR3UiVMUWpLnzPML
 ~~~
 
 There we go. The folder is now associated with the RSA key I just created. This seems somehow cleaner than referencing my blog with my peer ID of my local node.
@@ -225,4 +196,4 @@ I should also mention that the webUI ([http://localhost:5001/webui](http://local
 
 **Note**: You must have `ipfs daemon` running to view the webUI.
 
-**Up next**: [Some details of IPFS](https://frozen-oasis-28875.herokuapp.com/post/2018/08/10/putting-blog-on-ipfs)
+**Up next**: [Some details of IPFS](https://frozen-oasis-28875.herokuapp.com/post/2018/08/10/details-of-ipfs)

@@ -4,7 +4,7 @@ author: Greg Babb
 date: '2018-08-10'
 categories:
   - File storage
-slug: putting-blog-on-ipfs
+slug: details-of-ipfs
 ---
 
 The concepts behind IPFS are explained at length in the [whitepaper](https://ipfs.io/ipfs/QmR7GSQM93Cx5eAg6a6yRzNde1FQv7uL6X1o4k7zrJa3LX/ipfs.draft3.pdf) but I just want to cover some of its highlights here. I won't go into these in too much detail -- the whitepaper, along with plenty of other sources would provide better descriptions of these concepts.

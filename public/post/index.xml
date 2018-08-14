@@ -6,10 +6,20 @@
     <description>Recent content in Posts on Classic</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Thu, 28 Jun 2018 00:00:00 +0000</lastBuildDate>
+    <lastBuildDate>Fri, 10 Aug 2018 00:00:00 +0000</lastBuildDate>
     
 	<atom:link href="/post/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>Some details of IPFS</title>
+      <link>/post/2018/08/10/details-of-ipfs/</link>
+      <pubDate>Fri, 10 Aug 2018 00:00:00 +0000</pubDate>
+      
+      <guid>/post/2018/08/10/details-of-ipfs/</guid>
+      <description>The concepts behind IPFS are explained at length in the whitepaper but I just want to cover some of its highlights here. I won&amp;rsquo;t go into these in too much detail &amp;ndash; the whitepaper, along with plenty of other sources would provide better descriptions of these concepts.
+Distributed hash tables (DHTs) The white paper lays out a concept for a routing system that can &amp;ldquo;find (a) other peers&amp;rsquo; network addresses and (b) peers who can serve particular objects.</description>
+    </item>
     
     <item>
       <title>Getting this blog on IPFS</title>
@@ -18,8 +28,8 @@
       
       <guid>/post/2018/06/28/putting-blog-on-ipfs/</guid>
       <description>Enough of preliminaries, let&amp;rsquo;s get this party started! We&amp;rsquo;re going to use IPFS for what it was made: to store some content.
-The first thing I did was to head over to the IPFS home page and install it on my macbook. There, IPFS concepts are clearly explained and I&amp;rsquo;d recommend watching the demo video to get started.
-The first version of IPFS was written in the Go language, so I&amp;rsquo;m going with that and installing Go on my mac as a prerequisite.</description>
+The first thing I did was to head over to the IPFS home page and install it on my Macbook. There, IPFS concepts are clearly explained and I&amp;rsquo;d recommend watching the demo video to get started.
+The first version of IPFS was written in the Go language, so I&amp;rsquo;m going with that and installing Go on my Mac as a prerequisite (I know, that sounds arbitrary!</description>
     </item>
     
     <item>
@@ -28,9 +38,9 @@ The first version of IPFS was written in the Go language, so I&amp;rsquo;m going
       <pubDate>Wed, 27 Jun 2018 00:00:00 +0000</pubDate>
       
       <guid>/post/2018/06/27/first-look-at-ipfs/</guid>
-      <description>Much has been made of bitcoin&amp;rsquo;s blockchain being inherently unscalable, with transactions needing around 12 minutes to settle, and in some cases much longer. Although you can apparently use this blockchain for file storage, waiting so long to access your files can be a bummer.
+      <description>Much has been made of bitcoin&amp;rsquo;s blockchain being inherently unscalable, with transactions needing around 12 minutes to settle, and in some cases much longer. Although you can apparently use this blockchain for file storage, this is computationally expensive and impractical.
 This might also be because the network was not intended for file storage in the first place (e.g., max block size being 1MB).
-Decentralized file storage The idea is to create a file storage system that is similarly decentralized as the blockchain is, where content is also encrypted and where it&amp;rsquo;s basically broken up into little pieces (&amp;ldquo;sharded&amp;rdquo;) and stored on the computers of other network participants.</description>
+Decentralized file storage The idea is to create a file storage system that is similarly decentralized as the blockchain is, where content is also encrypted and where it&amp;rsquo;s sharded into little pieces and stored on the computers of other network participants, besides your own.</description>
     </item>
     
   </channel>
